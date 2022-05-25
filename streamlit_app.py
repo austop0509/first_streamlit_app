@@ -41,23 +41,23 @@ except URLError as e:
 
 
 # executes a query of the FRUIT_LOAD_LIST table and returns a data frame
-#streamlit.header("View our fruit list - add your favorites!")
+streamlit.header("View our fruit list - add your favorites!")
 # added function for generating list of fruits from Snowflake
-#def get_fruit_load_list():
-#	with my_cnx.cursor as my_cur:
-#		my_cur.execute("SELECT * FROM FRUIT_LOAD_LIST")
-#		return my_cur.fetchall()
+def get_fruit_load_list():
+	with my_cnx.cursor as my_cur:
+		my_cur.execute("select * from fruit_load_list")
+		return my_cur.fetchall()
 	
-#if streamlit.button('Get Fruit List'):
-#	my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-#	my_data_row = get_fruit_load_list()
-#	streamlit.dataframe(my_data_row)
+if streamlit.button('Get Fruit List'):
+	my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+	my_data_rows = get_fruit_load_list()
+	streamlit.dataframe(my_data_rows)
 
 
 # Allows user to add fruit to the list
 def insert_row_snowflake(new_fruit):
 	with my_cnx.cursor() as my_cur:
-		my_cur.execute("INSERT INTO FRUIT_LOAD_LIST VALUES ('"+ new_fruit +"')")
+		my_cur.execute("insert into fruit_load_list values ('"+ new_fruit +"')")
 		return "Thanks for adding" + new_fruit
 
 add_my_fruit = streamlit.text_input("What fruit would you like to add?")
