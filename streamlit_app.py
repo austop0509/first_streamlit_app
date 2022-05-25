@@ -39,7 +39,7 @@ try :
 except URLError as e:
 	streamlit.error()
 
-streamlit.stop()
+
 # executes a query of the FRUIT_LOAD_LIST table and returns a data frame
 streamlit.header("View our fruit list - add your favorites!")
 # added function for generating list of fruits from Snowflake
@@ -53,6 +53,7 @@ if streamlit.button('Get Fruit List'):
 	my_data_row = get_fruit_load_list()
 	streamlit.dataframe(my_data_row)
 
+streamlit.stop()
 # Allows user to add fruit to the list
 def insert_row_snowflake(new_fruit):
 	with my_cnx.cursor() as my_cur:
