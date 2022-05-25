@@ -40,7 +40,7 @@ except URLError as e:
 	streamlit.error()
 
 # executes a query of the FRUIT_LOAD_LIST table and returns a data frame
-streamlit.header("The fruit load list contains:")
+streamlit.header("View our fruit list - add your favorites!")
 if streamlit.button('Get Fruit List'):
 	my_cur.execute("SELECT * FROM FRUIT_LOAD_LIST")
 	my_data_row = my_cur.fetchall()
