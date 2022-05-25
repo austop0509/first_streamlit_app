@@ -48,6 +48,7 @@ except URLError as e:
 # executes a query of the FRUIT_LOAD_LIST table and returns a data frame
 streamlit.header("View our fruit list - add your favorites!")
 if streamlit.button('Get Fruit List'):
+	my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 	my_cur.execute("SELECT * FROM FRUIT_LOAD_LIST")
 	my_data_row = my_cur.fetchall()
 	streamlit.dataframe(my_data_row)
