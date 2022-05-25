@@ -39,6 +39,7 @@ try :
 except URLError as e:
 	streamlit.error()
 
+streamlit.stop()
 # executes a query of the FRUIT_LOAD_LIST table and returns a data frame
 streamlit.header("View our fruit list - add your favorites!")
 # added function for generating list of fruits from Snowflake
