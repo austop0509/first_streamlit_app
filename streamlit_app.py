@@ -39,6 +39,8 @@ try :
 except URLError as e:
 	streamlit.error()
 
+streamlit.stop()
+
 # Queries Snowflake PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
@@ -52,11 +54,6 @@ add_my_fruit = streamlit.text_input("Which fruit would you like to add?")
 streamlit.text("Thanks for adding " + add_my_fruit)
 my_cur.execute("INSERT INTO FRUIT_LOAD_LIST VALUES ('from streamlit')")
 
-
-streamlit.stop()
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-	
 # executes a query of the FRUIT_LOAD_LIST table and returns a data frame
 streamlit.header("View our fruit list - add your favorites!")
 # added function for generating list of fruits from Snowflake
